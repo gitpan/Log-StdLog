@@ -1,4 +1,4 @@
-Log::StdLog version 0.0.2
+Log::StdLog version 0.0.3
 
 This module provides a very simple kind of log file, with a very simple
 interface. Messages are logged simply by printing to *STDLOG, which the 

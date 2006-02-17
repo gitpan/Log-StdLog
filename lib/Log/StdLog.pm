@@ -1,6 +1,6 @@
 package Log::StdLog;
 
-use version; $VERSION = qv('0.0.2');
+use version; $VERSION = qv('0.0.3');
 
 use warnings;
 use strict;
@@ -114,7 +114,7 @@ Log::StdLog - A simple log file via a special filehandle
 
 =head1 VERSION
 
-This document describes Log::StdLog version 0.0.2
+This document describes Log::StdLog version 0.0.3
 
 
 =head1 SYNOPSIS
@@ -148,7 +148,7 @@ module is loaded, plus normal C<print> calls via the C<*STDLOG> filehandle.
 
 =head2 Load-time configuration
 
-When loading Log::StdLog, you can pass three arguments to the module to
+When loading Log::StdLog, you can pass up to four arguments to the module to
 configure it. Those arguments are passed in a single hash:
 
     use Log::StdLog { file => $filename, level=>$min_level };
@@ -162,6 +162,13 @@ Each is described below.
 Normally, Log::StdLog logs messages to a file named C<"$0.log"> (that is, the
 current filename with C<.log> appended. But if you pass a C<'file'> option, it
 uses that file as its logfile instead.
+
+=item use Log::StdLog { handle => $filehandle };
+
+Instead of specifying the name of the log file using the C<'file'> option, 
+you can specify a filehandle to which log messages are written, using the
+C<'handle'> option. If you specify both C<'file'> and C<'handle'>, the
+C<'handle'> option takes precedence.
 
 =item use Log::StdLog { level => $level_name };
 
@@ -227,7 +234,7 @@ So, for example, to implement a new logging format:
 
 you could specify:
 
-    use Log::StdLog { format => '/%s/%s/%s/ << %s >> };
+    use Log::StdLog { format => '/%s/%s/%s/ << %s >>' };
 
 =back
 
